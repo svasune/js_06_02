@@ -38,7 +38,7 @@ include("header.php")
     ?>
     <div class="container">
         <?php if ($err == "") { ?>
-        <h1><?= "Name : " . $entry["firstname"] . " , Last Name : " . $entry["lastname"] ?></h1>
+            <h1><?= "Name : " . $entry["firstname"] . " , Last Name : " . $entry["lastname"] ?></h1>
 
         <?php } ?>
         <img src="photos/<?= $entry["photo"] ?>">
