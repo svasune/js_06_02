@@ -1,3 +1,5 @@
+<html>
+
 <?php
 
 $hostname = "localhost";
@@ -21,14 +23,13 @@ if ($con->connect_error) {
         $entry = $result->fetch_assoc();
     }
 }
-
 ?>
 
-<html>
 <?php include("header.php")
 ?>
 
 <body>
+
     <div class="container">
         <?php
         while ($entry = $result->fetch_assoc()) {
@@ -37,6 +38,7 @@ if ($con->connect_error) {
 
         ?>
     </div>
+
 </body>
 
 </html>
