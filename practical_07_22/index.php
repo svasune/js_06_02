@@ -20,8 +20,8 @@ include("header.php")
     ?>
     <div class="container">
         <h1>VIP customers database</h1>
-        <p>Check all the customers <a href="#">here</a></p>
-        <p>Find an existing customer <a href="#">here</a></p>
+        <p>Check all the customers <a href="profiles.php">here</a></p>
+        <p>Find an existing customer <a href="customerSearch.php">here</a></p>
         <p>Add a new customer <a href="customerForm.php">here</a></p>
     </div>
 </body>
