@@ -38,10 +38,21 @@ include("header.php")
     ?>
     <div class="container">
         <?php if ($err == "") { ?>
-            <h1><?= "Name : " . $entry["firstname"] . " , Last Name : " . $entry["lastname"] ?></h1>
+        <h1><?= "Name : " . $entry["firstname"] . " , Last Name : " . $entry["lastname"] ?></h1>
 
         <?php } ?>
-        <img src="photos/<?= $entry["photo"] ?>">
+
+        <?php
+        $query = " SELECT * from photos ";
+        $result = mysqli_query($db, $query);
+
+        while ($data = mysqli_fetch_assoc($result)) {
+        ?>
+        <img src="./photos/<?php echo $data['filename']; ?>">
+
+        <?php
+        }
+        ?>
     </div>
 </body>
 

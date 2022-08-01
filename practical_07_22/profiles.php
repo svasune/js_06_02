@@ -36,7 +36,7 @@ if ($con->connect_error) {
         <h1>V.I.P. data base</h1>
         <?php
         while ($entry = $result->fetch_assoc()) {
-            echo "<h4>ID: " .  $entry["id"] . "</h4>",  "<h6>Name: " . $entry["firstname"] . ", Surname: " . $entry["lastname"] . ", Email: "  . $entry["email"] . ", Phone: "  . $entry["phone"] . ", Comment: "  . $entry["comment"] . "</h6>", "<img src=$entry[photo]", "<br>";
+            echo "<h4>ID: " .  $entry["id"] . "</h4>",  "<h5>" . $entry["firstname"] . $entry["lastname"] . "</h5>", "<h6>" . $entry["email"] . $entry["phone"] . "</h6>", "<img src=$entry[photo]>", "<p>" . $entry["comment"] . "</p>", "<br>";
         }
 
         ?>
