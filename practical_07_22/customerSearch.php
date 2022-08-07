@@ -28,7 +28,8 @@ include("header.php")
             <form class="form-inline" method="GET">
                 <input class="form-control" type="text" name="search" value="<?php if (isset($_GET['search'])) {
                                                                                     echo $_GET['search'];
-                                                                                } ?>" placeholder="Search" aria-label="Search">
+                                                                                } ?>" placeholder="Search"
+                    aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
@@ -58,22 +59,22 @@ include("header.php")
                                 if (mysqli_num_rows($query_run) > 0) {
                                     foreach ($query_run as $items) {
                             ?>
-                                        <tr>
-                                            <td><?= $items['id'] ?></td>
-                                            <td><?= $items['firstname'] ?></td>
-                                            <td><?= $items['lastname'] ?></td>
-                                            <td><?= $items['email'] ?></td>
-                                            <td><?= $items['phone'] ?></td>
-                                            <td><?= $items['photo'] ?></td>
-                                            <td><?= $items['comment'] ?></td>
-                                        </tr>
-                                    <?php
+                            <tr>
+                                <td><?= $items['id'] ?></td>
+                                <td><?= $items['firstname'] ?></td>
+                                <td><?= $items['lastname'] ?></td>
+                                <td><?= $items['email'] ?></td>
+                                <td><?= $items['phone'] ?></td>
+                                <td><?= "<img src='" . $items['photo'] . "' height=100>" ?></td>
+                                <td><?= $items['comment'] ?></td>
+                            </tr>
+                            <?php
                                     }
                                 } else {
                                     ?>
-                                    <tr>
-                                        <td>No such a profile found</td>
-                                    </tr>
+                            <tr>
+                                <td>No such a profile found</td>
+                            </tr>
                             <?php
                                 }
                             }

@@ -1,43 +1,20 @@
-<html>
 <?php
 include("db_utils.php");
 include("ui_utils.php");
-$con = connectToDb();
 $err = "";
-if ($err === "") {
-    $result = selectCustomers($con);
-}
-$id = $_POST["id"];
-$firstname = $_POST["firstname"];
-$lastname = $_POST["lastname"];
-$email = $_POST["email"];
-$phone = $_POST["phone"];
-$comment = $_POST["comment"];
-$photo = $_POST["photo"];
+$con = connectToDb($err);
 
-if ($con->connect_error) {
-    $err = $con->connect_error;
-} else {
-    $entry = "UPDATE `customer_new` SET `firstname`='$firstname', `lastname`='$lastname', `email`='$email', `phone`= '$phone', `photo`= '$photo', `comment`= '$comment' WHERE id=$id";
-    if ($con->query($entry)) {
-        $success = "Customer updated successfully";
-    } else {
-        $err = $con->error;
-    }
-}
+if ($err === "")
+    $result = selectCustomer($con);
+
 ?>
 
 <head>
-    <?php
-    include("header.php");
-    ?>
+    <?php include("header.php") ?>
 </head>
 
+
 <body>
-    <?php
-    include("navigation.php")
-    ?>
-    <!-- <?php printHelloName("Svajūnė", "Laurinėnaitė", "Pupki") ?> -->
     <div class="container m-2 p-2">
         <?php if ($err === "") : ?>
         <b>
@@ -52,8 +29,6 @@ if ($con->connect_error) {
             </div>
         </b>
         <?php
-
-
             while ($entry = $result->fetch_assoc()) :
                 echo "<div class='row'>";
 
@@ -64,23 +39,23 @@ if ($con->connect_error) {
                 //put it inside the form and triger the query.
 
                 echo "<div class='col'>";
-                echo "<input value='" . ($entry['firstname']) . "'>";
+                echo ($entry['firstname']);
                 echo "</div>";
 
                 echo "<div class='col'>";
-                echo "<input value='" . ($entry['lastname']) . "'>";
+                echo ($entry['lastname']);
                 echo "</div>";
 
                 echo "<div class='col'>";
-                echo "<input value='" . ($entry['email']) . "'>";
+                echo ($entry['email']);
                 echo "</div>";
 
                 echo "<div class='col'>";
-                echo "<input value='" . ($entry['phone']) . "'>";
+                echo ($entry['phone']);
                 echo "</div>";
 
                 echo "<div class='col'>";
-                echo "<input value='" . ($entry['comment']) . "'>";
+                echo ($entry['comment']);
                 echo "</div>";
 
                 echo "<div class='col'>";
@@ -88,7 +63,6 @@ if ($con->connect_error) {
                 echo "</div>";
 
                 echo "</div>";
-            // echo "<button href='updateForm.php' type='submit' class='btn btn-primary'>Update</button>";
             endwhile;
 
             ?>
@@ -101,5 +75,3 @@ if ($con->connect_error) {
     <button href="updateForm.php" class="btn btn-primary">Update</button>
 
 </body>
-
-</html>
