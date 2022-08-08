@@ -36,6 +36,18 @@ function updateCustomer(
     $con->query($query);
 }
 
+function createCustomer(
+    mysqli $con,
+    string $firstname,
+    string $lastname,
+    string $email,
+    string $phone
+) {
+    $prepStatement = $con->prepare("INSERT INTO customer_new (firstname, lastname, email, phone) VALUES (?,?,?,?)");
+    $prepStatement->bind_param("ssss", $firstname, $lastname, $email, $phone);
+    $prepStatement->execute();
+}
+
 function saveFromFile(string $filename)
 {
     $file = fopen($filename, "r");
@@ -44,6 +56,10 @@ function saveFromFile(string $filename)
         exit();
     }
     // skip the header line
+    $err = "";
+    $con = connectToDb($err);
+    if ($err !== "")
+        exit();
     $csvContenLineArr = fgetcsv($file, filesize($filename), ";");
 
     while ($csvContentLineArr = fgetcsv($file, filesize($filename), ";")) :
@@ -57,7 +73,6 @@ function saveFromFile(string $filename)
         $lastname =  $csvContentLineArr[1];
         $email =  $csvContentLineArr[2];
         $phone =  $csvContentLineArr[3];
-
-
+        createCustomer($con, $firstname, $lastname, $email, $phone);
     endwhile;
 }
